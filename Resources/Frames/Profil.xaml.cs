@@ -26,15 +26,15 @@ namespace ScoolLearn.Resources.Frames
 
         static private Profil instance;
 
-        private SqlConnection connection;
+        private IConnection connection;
 
         private int idUser;
 
-        public Profil(int idUser)
+        public Profil(int idUser, IConnection connection)
         {
             InitializeComponent();
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
 
             this.idUser = idUser;
 
@@ -50,53 +50,25 @@ namespace ScoolLearn.Resources.Frames
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeLogin changeLogin = new ChangeLogin(idUser);
+            ChangeLogin changeLogin = new ChangeLogin(idUser, connection);
             changeLogin.Show();
         }
 
         private void PasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangePassword changePassword = new ChangePassword(idUser);
+            ChangePassword changePassword = new ChangePassword(idUser, connection);
             changePassword.Show();
         }
 
         private void MailButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeMail changeMail = new ChangeMail(idUser);
+            ChangeMail changeMail = new ChangeMail(idUser, connection);
             changeMail.Show();
         }
 
         public void RefreshInfo()
         {
-            connection.Open();
-
-            string sqlExspression = $"SELECT * FROM [User] WHERE [id] = {idUser}";
-
-            SqlCommand command = new SqlCommand(sqlExspression,connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            reader.Read();
-
-            FullNameTextBlock.Text = $"{reader["LastName"]} {reader["FirstName"]} {reader["MiddleName"]}";
-
-            LastNameTextBlock.Text = reader["LastName"].ToString();
-
-            FirstNameTextBlock.Text = reader["FirstName"].ToString();
-
-            MiddleNameTextBlock.Text = reader["MiddleName"].ToString();
-
-            LoginNameTextBlock.Text = reader["Login"].ToString();
-
-            int lengthPassword = reader["Password"].ToString().Length;
-
-            PasswordTextBlock.Text = new string('*', lengthPassword);
-
-            MailTextBlock.Text = reader["Email"].ToString();
-
-            TextBorder.Text = FirstNameTextBlock.Text[0].ToString();
-
-            connection.Close();
+            throw new Exception();
         }
     }
 }

@@ -22,10 +22,12 @@ namespace ScoolLearn
     /// </summary>
     public partial class MainWindow : Window
     {
-        string password = "";
-        bool passwordIsHide = true;
+        private string connectionString = "Server=DESKTOP-30IU0QJ\\SQLEXPRESS;Database=lang2;Trusted_Connection=True;";
 
-        private SqlConnection connection;
+        private string password = "";
+        private bool passwordIsHide = true;
+
+        private IConnection connection;
 
         public MainWindow()
         {
@@ -33,10 +35,23 @@ namespace ScoolLearn
 
             PasswordTextBox.Visibility = Visibility.Hidden;
 
-            Connection.SetConnection();
+            connection = new SQLDatabaseConnection(connectionString);
 
-            connection = Connection.GetConnection();
+            TryOpenConnection();
         }
+
+        private void TryOpenConnection()
+        {
+            try
+            {
+                connection.TryOpenConnection();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не удалось установить подключение");
+            }
+        }
+
         private bool CheckFilling()
         {
             if (password != "" && LoginTextBox.Text != "")
@@ -48,41 +63,15 @@ namespace ScoolLearn
 
         private bool CheckAccuracy()
         {
-            connection.Open();
+            SQLDatabaseReader reader = new SQLDatabaseReader(connection);
 
-            string sqlExpression = $"SELECT * FROM [User] WHERE [Login]='{LoginTextBox.Text}' AND [Password]='{password}'";
+            User[] users = reader.ReadUsers();
 
-            SqlCommand command = new SqlCommand(sqlExpression, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                connection.Close();
-
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("Проверьте логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                connection.Close();
-
-                return false;
-            }
+            throw new Exception();
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-
-            if (connection == null)
-            {
-                MessageBox.Show("Не удалось установить соединение с базой данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
             if (passwordIsHide)
             {
                 password = HidePasswordBox.Password;
@@ -96,66 +85,13 @@ namespace ScoolLearn
             {
                 MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                connection.Close();
-
                 return;
             }
-
-            connection.Close();
 
             if (!CheckAccuracy())
             {
                 return;
             }
-
-            int id = FindIdUserByLogin();
-
-            Role.UserId = id;
-
-            Role.RoleLevel = FindRoleUserById(id);
-
-            MainMenu window = new MainMenu(connection, id);
-            window.Show();
-
-            this.Close();
-        }
-
-        private int FindIdUserByLogin()
-        {
-            connection.Open();
-
-            string sqlExspression = $"SELECT ID FROM [User] WHERE [Login] = '{LoginTextBox.Text}'";
-
-            SqlCommand cmd = new SqlCommand(sqlExspression, connection);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            reader.Read();
-
-            int id = (int)reader["id"];
-
-            connection.Close();
-
-            return id;
-        }
-
-        private int FindRoleUserById(int id)
-        {
-            connection.Open();
-
-            string sqlExspression = $"SELECT IdRole FROM [User] WHERE [Id] = {id}";
-
-            SqlCommand command = new SqlCommand(sqlExspression, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            reader.Read();
-
-            int role = Convert.ToInt32(reader["IdRole"]);
-
-            connection.Close();
-
-            return role;
         }
 
         private void HidePasswordButton_Click(object sender, RoutedEventArgs e)
@@ -178,7 +114,7 @@ namespace ScoolLearn
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
-            Registration registration = new Registration();
+            Registration registration = new Registration(connection);
 
             registration.Show();
 

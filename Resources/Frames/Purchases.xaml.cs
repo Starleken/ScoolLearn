@@ -24,15 +24,15 @@ namespace ScoolLearn.Resources.Frames
     {
         static readonly ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
 
-        SqlConnection connection;
+        private IConnection connection;
 
         public List<int> purchasesService = new List<int>();
 
-        public Purchases()
+        public Purchases(IConnection connection)
         {
             InitializeComponent();
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
 
             RefreshPurchases();
         }
@@ -44,80 +44,7 @@ namespace ScoolLearn.Resources.Frames
 
         public void RefreshPurchases()
         {
-            connection.Close();
-
-            PurchasesServiceStackPanel.Children.Clear();
-
-            connection.Open();
-
-            for (int i = 0; i < purchasesService.Count; i++)
-            {
-                string sqlExspression = $"SELECT * FROM [Service] WHERE [ID] = {purchasesService[i]}";
-
-                SqlCommand command = new SqlCommand(sqlExspression,connection);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                Grid grid = new Grid();
-
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(30) });
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(20) });
-                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(30) });
-
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(110) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(250) });
-
-                reader.Read();
-
-                Image image = new Image();
-                try
-                {
-                    image.Source = (ImageSource)imageSourceConverter.ConvertFrom(reader["MainImagePath"].ToString().Trim());
-                }
-                catch (Exception) { }
-                grid.Children.Add(image);
-                Grid.SetRowSpan(image, 2);
-
-                TextBlock id = new TextBlock();
-                id.Text = reader["id"].ToString();
-                id.FontSize = 10;
-                id.VerticalAlignment = VerticalAlignment.Center;
-                grid.Children.Add(id);
-                Grid.SetRow(id, 0);
-                Grid.SetColumn(id, 1);
-                Grid.SetColumnSpan(id, 3);
-                id.Visibility = Visibility.Collapsed;
-
-                TextBlock name = new TextBlock();
-                name.Text = (string)reader["Title"];
-                name.FontSize = 13;
-                grid.Children.Add(name);
-                Grid.SetRow(name, 0);
-                Grid.SetColumn(name, 1);
-                Grid.SetColumnSpan(name, 3);
-
-                TextBlock price = new TextBlock();
-                if (Convert.ToDouble(reader["Discount"]) == 0)
-                {
-                    price.Text = $"{Math.Round(Convert.ToDecimal(reader["Cost"]), 2)} рублей";
-                }
-                else
-                {
-                    price.Text = $"{Math.Round(Convert.ToDecimal(reader["Cost"]), 2)} с учётом {Convert.ToSingle(reader["Discount"]) * 100}% скидки";
-                }
-                grid.Children.Add(price);
-                Grid.SetRow(price, 1);
-                Grid.SetColumn(price, 1);
-                Grid.SetColumnSpan(price, 2);
-
-                PurchasesServiceStackPanel.Children.Add(grid);
-
-                reader.Close();
-            }
-
-            connection.Close();
+            throw new Exception();
         }
     }
 }

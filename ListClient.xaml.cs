@@ -31,19 +31,19 @@ namespace ScoolLearn
             public string telephone { get; set; }
         }
 
-        private SqlConnection connection;
+        private IConnection connection;
 
         private int serviceId;
 
         private List<Client> users = new List<Client>();
 
-        public ListClient(int serviceId)
+        public ListClient(int serviceId, IConnection connection)
         {
             InitializeComponent();
 
             this.serviceId = serviceId;
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
 
             SetNameService();
 
@@ -52,102 +52,17 @@ namespace ScoolLearn
 
         private void RefreshClient()
         {
-            ClientDataGrid.Items.Clear();
-
-            users.Clear();
-
-            connection.Open();
-
-            string sqlExspression = $"SELECT ClientID FROM [ClientService] WHERE [ServiceId] = {serviceId}";
-
-            SqlCommand cmd = new SqlCommand(sqlExspression, connection);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            List<int> clientId = new List<int>();
-
-            while (reader.Read())
-            {
-                clientId.Add(Convert.ToInt32(reader["ClientID"]));
-            }
-
-            reader.Close();
-
-            for (int i = 0; i < clientId.Count; i++)
-            {
-                sqlExspression = $"SELECT * FROM [Client] WHERE [ID] = {clientId[i]}";
-
-                cmd = new SqlCommand(sqlExspression, connection);
-
-                reader = cmd.ExecuteReader();
-
-                reader.Read();
-
-                Client client = new Client()
-                {
-                    id = reader["ID"].ToString(),
-                    firstName = reader["FirstName"].ToString(),
-                    lastName = reader["LastName"].ToString(),
-                    patronymic = reader["Patronymic"].ToString(),
-                    EMail = reader["Email"].ToString(),
-                    telephone = reader["Phone"].ToString()
-                };
-
-                reader.Close();
-
-                ClientDataGrid.Items.Add(client);
-
-                users.Add(client);
-            }
-
-            connection.Close();
+            throw new Exception();
         }
 
         private void SetNameService()
         {
-            connection.Open();
-
-            string sqlExspression = $"SELECT Title FROM [Service] WHERE [ID] = {serviceId}";
-
-            SqlCommand command = new SqlCommand(sqlExspression, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Read();
-
-            ServiceNameTextBlock.Text = $"{reader["Title"]}";
-
-            connection.Close();
+            throw new Exception();
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ClientDataGrid.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Выберите пользователя","Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
-            MessageBoxResult result =  MessageBox.Show("Вы уверены?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.No)
-            {
-                return;
-            }
-
-            connection.Open();
-
-            int index = ClientDataGrid.SelectedIndex;
-
-            string sqlExspression = $"DELETE FROM [ClientService] WHERE [ClientId] = {users[index].id} AND [ServiceId] = {serviceId}";
-
-            SqlCommand command = new SqlCommand(sqlExspression, connection);
-
-            command.ExecuteNonQuery();
-
-            connection.Close();
-
-            ClientDataGrid.Items.Remove(users[index]);
+            throw new Exception();
         }
     }
 }

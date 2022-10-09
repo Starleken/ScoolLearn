@@ -71,11 +71,16 @@
     <Compile Include="Resources\Frames\Profil.xaml.cs">
       <DependentUpon>Profil.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Frames\Service.xaml.cs">
-      <DependentUpon>Service.xaml</DependentUpon>
+    <Compile Include="Resources\Frames\ServiceFrame.xaml.cs">
+      <DependentUpon>ServiceFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Scripts\SQLDatabaseReader.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IConnection.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IReader.cs" />
+    <Compile Include="Resources\Scripts\Models\Service.cs" />
+    <Compile Include="Resources\Scripts\Models\User.cs" />
     <Compile Include="Resources\Scripts\Role.cs" />
-    <Compile Include="Resources\Scripts\Connection.cs" />
+    <Compile Include="Resources\Scripts\SQLDatabaseConnection.cs" />
     <Compile Include="AddService.xaml.cs">
       <DependentUpon>AddService.xaml</DependentUpon>
     </Compile>
@@ -124,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Frames\Service.xaml">
+    <Page Include="Resources\Frames\ServiceFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

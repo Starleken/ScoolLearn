@@ -22,9 +22,9 @@ namespace ScoolLearn
     /// </summary>
     public partial class AddService : Window
     {
-        private SqlConnection connection;
+        private IConnection connection;
 
-        public AddService(SqlConnection connection)
+        public AddService(IConnection connection)
         {
             InitializeComponent();
 
@@ -33,41 +33,7 @@ namespace ScoolLearn
 
         private  void addButton_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-
-            if (CheckFilling()) { }
-            else
-            {
-                MessageBox.Show("Заполните поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите добавить?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.No)
-            {
-                return;
-            }
-
-            float discount = 0;
-
-            if (discountTextBox.Text != "")
-            {
-                discount = Convert.ToSingle(discountTextBox.Text) / 100;
-            }
-            string discountText = discount.ToString().Replace(',', '.');
-
-            string sqlCommand = $"INSERT INTO Service (Title, Cost, DurationInSeconds, Discount, MainImagePath) VALUES ('{nameTextBox.Text}', {priceTextBox.Text}, {timeTextBox.Text}, {discountText}, '{imageTextBox.Text}')";
-
-            SqlCommand cmd = new SqlCommand(sqlCommand, connection);
-            cmd.ExecuteNonQuery();
-
-            connection.Close();
-
-            Service.GetInstance().RefreshCervice();
-
-            MainMenu.history.AddHistory($"Добавлена услуга {nameTextBox.Text}");
+            throw new Exception();
         }
 
         private bool CheckFilling()

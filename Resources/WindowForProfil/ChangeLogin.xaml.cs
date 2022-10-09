@@ -22,17 +22,17 @@ namespace ScoolLearn.Resources.WindowForProfil
     /// </summary>
     public partial class ChangeLogin : Window
     {
-        SqlConnection connection;
+        IConnection connection;
 
         int idUser;
 
-        public ChangeLogin(int idUser)
+        public ChangeLogin(int idUser, IConnection connection)
         {
             InitializeComponent();
 
             this.idUser = idUser;
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
         }
         
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -49,47 +49,12 @@ namespace ScoolLearn.Resources.WindowForProfil
                 return;
             }
 
-            connection.Open();
-
-            string sqlExspression = $"UPDATE [User] SET [Login]='{LoginTextBox.Text}' WHERE id={idUser}";
-
-            SqlCommand command = new SqlCommand(sqlExspression, connection);
-
-            command.ExecuteNonQuery();
-
-            connection.Close();
-
-            Profil.GetInstance().RefreshInfo();
-
-            MainMenu.history.AddHistory("Изменён логин");
-
-            this.Close();
+            throw new Exception();
         }
 
         private bool CheckIdentifity()
         {
-            connection.Open();
-
-            string sqlExpression = $"SELECT * FROM [User] WHERE [Login]='{LoginTextBox.Text}'";
-
-            SqlCommand command = new SqlCommand(sqlExpression, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                MessageBox.Show("Логин занят");
-
-                connection.Close();
-
-                return false;
-            }
-            else
-            {
-                connection.Close();
-
-                return true;
-            }
+            throw new Exception();
         }
 
         private bool CheckFilling()

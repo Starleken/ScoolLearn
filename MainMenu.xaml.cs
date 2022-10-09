@@ -22,22 +22,24 @@ namespace ScoolLearn
     /// </summary>
     public partial class MainMenu : Window
     {
-        private SqlConnection connection;
+        private IConnection connection;
 
         private int idUser;
 
-        private Service service;
+        private ServiceFrame service;
         private Profil profil;
         static public History history = new History();
-        static public Purchases purchases = new Purchases();
+        static public Purchases purchases;
 
-        public MainMenu(SqlConnection connection, int idUser)
+        public MainMenu(IConnection connection, int idUser)
         {
             InitializeComponent();
 
             this.connection = connection;
 
             this.idUser = idUser;
+
+            purchases = new Purchases(connection);
 
             SetName();
 
@@ -56,19 +58,7 @@ namespace ScoolLearn
 
         private void SetName()
         {
-            connection.Open();
-
-            string sqlExspression = $"SELECT * FROM [User] WHERE [id] = {idUser}";
-
-            SqlCommand cmd = new SqlCommand(sqlExspression, connection);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            reader.Read();
-
-            NameTextBlock.Text = $"{reader["LastName"]} {reader["FirstName"]}";
-
-            connection.Close();
+            throw new Exception();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -82,7 +72,7 @@ namespace ScoolLearn
         {
             if (service == null)
             {
-                service = Service.GetInstance();
+                service = new ServiceFrame(connection);
             }
 
             FrameText.Text = "Список услуг";
@@ -101,7 +91,7 @@ namespace ScoolLearn
         {
             if (profil == null)
             {
-                profil = new Profil(idUser);
+                profil = new Profil(idUser, connection);
             }
 
             FrameText.Text = "Профиль";
@@ -140,7 +130,7 @@ namespace ScoolLearn
         {
             if (purchases == null)
             {
-                purchases = new Purchases();
+                purchases = new Purchases(connection);
             }
 
             FrameText.Text = "Купленные курсы";

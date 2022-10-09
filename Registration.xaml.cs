@@ -21,17 +21,17 @@ namespace ScoolLearn
     /// </summary>
     public partial class Registration : Window
     {
-        SqlConnection connection;
+        IConnection connection;
 
         private bool passwordIsHide = true;
 
         private string password;
 
-        public Registration()
+        public Registration(IConnection connection)
         {
             InitializeComponent();
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
 
             PasswordTextBox.Visibility = Visibility.Hidden;
         }
@@ -48,28 +48,7 @@ namespace ScoolLearn
 
         private bool CheckIdentifity()
         {
-            connection.Open();
-
-            string sqlExpression = $"SELECT * FROM [User] WHERE [Login]='{LoginTextBox.Text}'";
-
-            SqlCommand command = new SqlCommand(sqlExpression, connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                MessageBox.Show("Логин занят");
-
-                connection.Close();
-
-                return false;
-            }
-            else 
-            {
-                connection.Close();
-
-                return true;
-            } 
+            throw new Exception();
         }
 
         private void RegButton_Click(object sender, RoutedEventArgs e)
@@ -86,8 +65,6 @@ namespace ScoolLearn
                 return;
             }
 
-            connection.Open();
-
             if (passwordIsHide)
             {
                 password = HidePasswordBox.Password;
@@ -96,19 +73,6 @@ namespace ScoolLearn
             {
                 password = PasswordTextBox.Text;
             }
-
-            string sqlExspression = $"INSERT INTO [User] ([Login], [Password], [IdRole], [FirstName], [LastName], [MiddleName], [Birthday], [RegistrationDate], [Email], [Phone], [GenderCode]) VALUES ('{LoginTextBox.Text}', '{password}', 3, '{NameTextBox.Text}', '{FamilyTextBox.Text}', '{MiddleNameTextBox.Text}', GETDATE(), GETDATE(), '{EmailTextBox.Text}', '{TelephoneTextBox.Text}', 'м')";
-
-            SqlCommand cmd = new SqlCommand(sqlExspression, connection);
-
-            cmd.ExecuteNonQuery();
-
-            MessageBox.Show("Аккаунт создан");
-
-            connection.Close();
-
-            MainWindow avtorization = new MainWindow();
-            avtorization.Show();
 
             this.Close();
         }

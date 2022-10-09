@@ -37,52 +37,12 @@ namespace ScoolLearn
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            connection.Open();
-
-            float discount = 0;
-
-            if (discountTextBox.Text != "")
-            {
-                discount = Convert.ToSingle(discountTextBox.Text) / 100;
-            }
-            string discountText = discount.ToString().Replace(',', '.');
-
-            string sqlExpression = $"UPDATE Service SET Title = '{nameTextBox.Text}', Cost = {priceTextBox.Text}, DurationInSeconds = {timeTextBox.Text}, Discount = {discountText} WHERE ID = {idService}";
-
-            SqlCommand cmd = new SqlCommand(sqlExpression, connection);
-
-            cmd.ExecuteNonQuery();
-
-            connection.Close();
-
-            Service.GetInstance().RefreshCervice();
-
-            MainMenu.history.AddHistory($"Изменена услуга {nameTextBox.Text}");
-
-            this.Close();
+            throw new Exception();
         }
 
-        private async void FillTextBox()
+        private void FillTextBox()
         {
-            connection = Connection.GetConnection();
-
-            connection.Open();
-
-            string sqlExpression = $"SELECT * FROM Service WHERE ID = {idService}";
-
-            SqlCommand cmd = new SqlCommand(sqlExpression, connection);
-
-            SqlDataReader reader = await cmd.ExecuteReaderAsync();
-
-            reader.Read();
-
-            nameTextBox.Text = reader["Title"].ToString();
-            priceTextBox.Text = reader["Cost"].ToString().Replace(',','.');
-            timeTextBox.Text = reader["DurationInSeconds"].ToString();
-            discountTextBox.Text = (Convert.ToSingle(reader["Discount"]) * 100).ToString();
-            imageTextBox.Text = reader["MainImagePath"].ToString();
-
-            connection.Close();
+            throw new Exception();
         }
     }
 }

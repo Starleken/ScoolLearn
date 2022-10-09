@@ -22,43 +22,22 @@ namespace ScoolLearn.Resources.WindowForProfil
     /// </summary>
     public partial class ChangeMail : Window
     {
-        SqlConnection connection;
+        IConnection connection;
 
         int idUser;
 
-        public ChangeMail(int idUser)
+        public ChangeMail(int idUser, IConnection connection)
         {
             InitializeComponent();
 
             this.idUser = idUser;
 
-            connection = Connection.GetConnection();
+            this.connection = connection;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!CheckFilling())
-            {
-                MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                return;
-            }
-
-            connection.Open();
-
-            string sqlExspression = $"UPDATE [User] SET [Email]='{MailTextBox.Text}' WHERE id={idUser}";
-
-            SqlCommand command = new SqlCommand(sqlExspression, connection);
-
-            command.ExecuteNonQuery();
-
-            connection.Close();
-
-            Profil.GetInstance().RefreshInfo();
-
-            MainMenu.history.AddHistory("Изменена почта");
-
-            this.Close();
+            throw new Exception();
         }
 
         private bool CheckFilling()
