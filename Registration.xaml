@@ -1,0 +1,63 @@
+﻿<Window x:Class="ScoolLearn.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoolLearn"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="500" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Resources/Images/school_logo.ico" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Фамилия" FontSize="28" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+            <TextBox x:Name="FamilyTextBox" Grid.Row="0" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Имя" FontSize="28" Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+            <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Отчество" FontSize="28" Grid.Row="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+            <TextBox x:Name="MiddleNameTextBox" Grid.Row="2" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Телефон" FontSize="28" Grid.Row="3" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+            <TextBox x:Name="TelephoneTextBox" Grid.Row="3" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Почта" FontSize="28" Grid.Row="4" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+            <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Дата рождения" FontSize="21" Grid.Row="5" Margin="0,0,0,0" HorizontalAlignment="Right" FontWeight="Normal" VerticalAlignment="Center"/>
+            <TextBox x:Name="BirthdayTextBox" Grid.Row="5" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Text="Логин" FontSize="28" Grid.Row="6" Margin="0,0,0,0" HorizontalAlignment="Right" FontWeight="Normal" VerticalAlignment="Center"/>
+            <TextBox x:Name="LoginTextBox" Grid.Row="6" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <TextBlock Grid.Row="7" Text="Пароль" Margin="0,0,0,0" FontSize="28" HorizontalAlignment="Right"/>
+            <TextBox x:Name="PasswordTextBox" Grid.Row="7" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+            <PasswordBox x:Name="HidePasswordBox" Grid.Row="7" Grid.Column="1" Margin="4,10,30,10" FontSize="15"/>
+
+            <Button x:Name="RegButton" Grid.Row="8" Content="Создать" Margin="10" FontSize="15" Click="RegButton_Click"/>
+            <Button x:Name="HidePasswordButton" Grid.Row="8" Grid.Column="1" Margin="10" Content="Скрыть" FontSize="15" Click="HidePasswordButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
