@@ -8,9 +8,9 @@ namespace ScoolLearn.Resources.Scripts.Factory
 {
     internal class UserFactory
     {
-        public User Get(string login, string password)
+        public User Get(string login, string password, string name, string lastName, int roleId)
         {
-            User user = new User(login, password);
+            User user = new User(login, password, name, lastName, roleId);
 
             return user;
         }

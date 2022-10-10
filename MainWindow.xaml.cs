@@ -22,7 +22,7 @@ namespace ScoolLearn
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string connectionString = "Server=DESKTOP-30IU0QJ\\SQLEXPRESS;Database=lang2;Trusted_Connection=True;";
+        private string connectionString = "Server=DESKTOP-QM5BSJ8\\SQLEXPRESS;Database=lang2;Trusted_Connection=True;";
 
         private string password = "";
         private bool passwordIsHide = true;
@@ -52,19 +52,26 @@ namespace ScoolLearn
             }
         }
 
-        private bool CheckFilling()
+        private void CheckFilling()
         {
             if (password != "" && LoginTextBox.Text != "")
             {
-                return true;
+                return;
             }
-            else return false;
+            else throw new DataNotFilledException("Введите данные");
         }
 
         private User FindUser()
         {
             SQLDatabaseReader reader = new SQLDatabaseReader(connection);
-            return reader.FindUser(LoginTextBox.Text, password);
+            User user =  reader.FindUser(LoginTextBox.Text, password);
+
+            if (user == null)
+            {
+                throw new UserNotFoundException("Неверный логин или пароль"); 
+            }
+
+            return user;
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
@@ -78,20 +85,18 @@ namespace ScoolLearn
                 password = PasswordTextBox.Text;
             }
 
-            if (!CheckFilling())
+            try
             {
-                MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                CheckFilling();
+                User user = FindUser();
+
+                OpenWindow(new MainMenu(connection, user));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            User user = FindUser();
-            if (user == null)
-            {
-                MessageBox.Show("Неправильный логин или пароль");
-                return;
-            }
-
-            OpenWindow(new MainMenu(connection, user));
         }
 
         private void HidePasswordButton_Click(object sender, RoutedEventArgs e)

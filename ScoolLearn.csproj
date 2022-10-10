@@ -74,14 +74,16 @@
     <Compile Include="Resources\Frames\ServiceFrame.xaml.cs">
       <DependentUpon>ServiceFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Scripts\Exceptions\DataNotFilledException.cs" />
+    <Compile Include="Resources\Scripts\Exceptions\UserNotFoundException.cs" />
     <Compile Include="Resources\Scripts\Factory\UserFactory.cs" />
     <Compile Include="Resources\Scripts\Factory\ServiceFactory.cs" />
+    <Compile Include="Resources\Scripts\Models\Role.cs" />
     <Compile Include="Resources\Scripts\SQLDatabaseReader.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IConnection.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IReader.cs" />
     <Compile Include="Resources\Scripts\Models\Service.cs" />
     <Compile Include="Resources\Scripts\Models\User.cs" />
-    <Compile Include="Resources\Scripts\Role.cs" />
     <Compile Include="Resources\Scripts\SQLDatabaseConnection.cs" />
     <Compile Include="AddService.xaml.cs">
       <DependentUpon>AddService.xaml</DependentUpon>
@@ -219,8 +221,6 @@
   <ItemGroup>
     <Resource Include="school_logo.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Scripts\Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

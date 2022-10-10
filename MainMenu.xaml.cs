@@ -28,37 +28,33 @@ namespace ScoolLearn
 
         private ServiceFrame service;
         private Profil profil;
-        static public History history = new History();
+        static public History history;
         static public Purchases purchases;
 
         public MainMenu(IConnection connection, User user)
         {
             InitializeComponent();
 
+            if (user.Role == Role.Admin)
+            {
+                MessageBox.Show("gfdg");
+            }
+
             this.connection = connection;
 
             this.user = user;
 
-            purchases = new Purchases(connection);
+            NameTextBlock.DataContext = user;
 
-            SetName();
+            //if (Role.RoleLevel == 2 || Role.RoleLevel == 3)
+            //{
+            //    addButton.Visibility = Visibility.Collapsed;
+            //}
 
-            ExitButton.Visibility = Visibility.Collapsed;
-
-            if (Role.RoleLevel == 2 || Role.RoleLevel == 3)
-            {
-                addButton.Visibility = Visibility.Collapsed;
-            }
-
-            if (Role.RoleLevel != 3)
-            {
-                ButtonPurchases.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void SetName()
-        {
-            throw new Exception();
+            //if (Role.RoleLevel != 3)
+            //{
+            //    ButtonPurchases.Visibility = Visibility.Collapsed;
+            //}
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -79,7 +75,7 @@ namespace ScoolLearn
 
             FrameList.Navigate(service);
 
-            if (Role.RoleLevel == 1)
+            if (user.Role == Role.Admin)
             {
                 addButton.Visibility = Visibility.Visible;
             }
@@ -91,7 +87,7 @@ namespace ScoolLearn
         {
             if (profil == null)
             {
-                profil = new Profil(idUser, connection);
+                profil = new Profil(1, connection);
             }
 
             FrameText.Text = "Профиль";

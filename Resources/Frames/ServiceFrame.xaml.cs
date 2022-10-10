@@ -26,24 +26,15 @@ namespace ScoolLearn.Resources.Frames
 
         static readonly ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
 
-        static public ServiceFrame instance;
-
         public ServiceFrame(IConnection connection)
         {
             InitializeComponent();
 
             this.connection = connection;
 
-            instance = this;
+            //CheckPurchases();
 
-            CheckPurchases();
-
-            RefreshCervice();
-        }
-
-        public static ServiceFrame GetInstance()
-        {
-            return instance;
+            //RefreshCervice();
         }
 
         public void RefreshCervice()

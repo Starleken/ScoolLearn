@@ -56,7 +56,10 @@ namespace ScoolLearn.Resources.Scripts
                     user = new UserFactory().Get
                         (
                         reader["Login"].ToString(),
-                        reader["Password"].ToString()
+                        reader["Password"].ToString(),
+                        reader["Name"].ToString(),
+                        reader["LastName"].ToString(),
+                        Convert.ToInt32(reader["RoleId"])
                         );
                 }
 
