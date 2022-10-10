@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using ScoolLearn.Resources.Scripts.Factory;
+using System.Data.Common;
 
 namespace ScoolLearn.Resources.Scripts
 {
@@ -18,22 +20,59 @@ namespace ScoolLearn.Resources.Scripts
             this.connection = connection;
         }
 
-        public Service[] ReadServices()
+        public List<Service> ReadServices()
         {
-            string cmdText = "";
+            List<Service> services = new List<Service>();
 
-            SqlConnection sqlconn = (SqlConnection)connection.GetConnection();
+            using (SqlDataReader reader = MakeQueue("SELECT * FROM Services"))
+            {
+                while (reader.Read())
+                {
+                    Service service = new ServiceFactory().Get
+                        (
+                        reader["Title"].ToString(),
+                        Convert.ToDouble(reader["Cost"]),
+                        Convert.ToInt32(reader["DurationInSeconds"]),
+                        Convert.ToDouble(reader["Discount"]),
+                        reader["MainImagePath"].ToString()
+                        );
 
-            SqlCommand cmd = new SqlCommand(cmdText, sqlconn);
+                    services.Add(service);
+                }
 
-            cmd.ExecuteReader();
+            }
 
-            throw new Exception();
+            return services;
         }
 
-        public User[] ReadUsers()
+        public User FindUser(string login, string password)
         {
-            throw new NotImplementedException();
+            User user = null;
+
+            using (SqlDataReader reader = MakeQueue($"SELECT * FROM [User] WHERE [Login]='{login}' AND [Password]='{password}'"))
+            {
+                while (reader.Read())
+                {
+                    user = new UserFactory().Get
+                        (
+                        reader["Login"].ToString(),
+                        reader["Password"].ToString()
+                        );
+                }
+
+                return user;
+            }
+        }
+
+        private SqlDataReader MakeQueue(string cmdText)
+        {
+            sqlConn = (SqlConnection)connection.GetConnection();
+
+            SqlCommand cmd = new SqlCommand(cmdText, sqlConn);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            return reader;
         }
     }
 }

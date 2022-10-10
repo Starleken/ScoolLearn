@@ -24,20 +24,20 @@ namespace ScoolLearn
     {
         private IConnection connection;
 
-        private int idUser;
+        private User user;
 
         private ServiceFrame service;
         private Profil profil;
         static public History history = new History();
         static public Purchases purchases;
 
-        public MainMenu(IConnection connection, int idUser)
+        public MainMenu(IConnection connection, User user)
         {
             InitializeComponent();
 
             this.connection = connection;
 
-            this.idUser = idUser;
+            this.user = user;
 
             purchases = new Purchases(connection);
 

@@ -74,6 +74,8 @@
     <Compile Include="Resources\Frames\ServiceFrame.xaml.cs">
       <DependentUpon>ServiceFrame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Scripts\Factory\UserFactory.cs" />
+    <Compile Include="Resources\Scripts\Factory\ServiceFactory.cs" />
     <Compile Include="Resources\Scripts\SQLDatabaseReader.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IConnection.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IReader.cs" />
@@ -216,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="school_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Scripts\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

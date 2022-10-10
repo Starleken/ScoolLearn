@@ -61,13 +61,10 @@ namespace ScoolLearn
             else return false;
         }
 
-        private bool CheckAccuracy()
+        private User FindUser()
         {
             SQLDatabaseReader reader = new SQLDatabaseReader(connection);
-
-            User[] users = reader.ReadUsers();
-
-            throw new Exception();
+            return reader.FindUser(LoginTextBox.Text, password);
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
@@ -84,14 +81,17 @@ namespace ScoolLearn
             if (!CheckFilling())
             {
                 MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 return;
             }
 
-            if (!CheckAccuracy())
+            User user = FindUser();
+            if (user == null)
             {
+                MessageBox.Show("Неправильный логин или пароль");
                 return;
             }
+
+            OpenWindow(new MainMenu(connection, user));
         }
 
         private void HidePasswordButton_Click(object sender, RoutedEventArgs e)
@@ -114,10 +114,12 @@ namespace ScoolLearn
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
-            Registration registration = new Registration(connection);
+            OpenWindow(new Registration(connection));
+        }
 
-            registration.Show();
-
+        private void OpenWindow(Window window)
+        {
+            window.Show();
             this.Close();
         }
     }

@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal class User
+    public class User
     {
         public string Login { get; private set; }
 
         public string Password { get; private set; }
+
+        public string Name { get; private set; }
+
+        public string LastName { get; set; }
 
         public User(string login, string password)
         {

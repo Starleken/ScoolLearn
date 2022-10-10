@@ -8,8 +8,8 @@ namespace ScoolLearn.Resources.Scripts
 {
     internal interface IReader
     {
-        User[] ReadUsers();
+        User FindUser(string login, string password);
 
-        Service[] ReadServices();
+        List<Service> ReadServices();
     }
 }
