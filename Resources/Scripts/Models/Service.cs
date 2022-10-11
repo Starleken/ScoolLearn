@@ -14,6 +14,8 @@ namespace ScoolLearn.Resources.Scripts
         public double Discount { get; set; }
         public string ImagePath { get; set; }
 
+        public Service() { }
+
         public Service(string title, double cost, int durationInSeconds, double discount, string imagePath)
         {
             Title = title;

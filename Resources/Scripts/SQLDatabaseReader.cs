@@ -24,7 +24,7 @@ namespace ScoolLearn.Resources.Scripts
         {
             List<Service> services = new List<Service>();
 
-            using (SqlDataReader reader = MakeQueue("SELECT * FROM Services"))
+            using (SqlDataReader reader = MakeQueue("SELECT * FROM Service"))
             {
                 while (reader.Read())
                 {

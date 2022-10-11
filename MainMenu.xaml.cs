@@ -26,19 +26,9 @@ namespace ScoolLearn
 
         private User user;
 
-        private ServiceFrame service;
-        private Profil profil;
-        static public History history;
-        static public Purchases purchases;
-
         public MainMenu(IConnection connection, User user)
         {
             InitializeComponent();
-
-            if (user.Role == Role.Admin)
-            {
-                MessageBox.Show("gfdg");
-            }
 
             this.connection = connection;
 
@@ -46,15 +36,19 @@ namespace ScoolLearn
 
             NameTextBlock.DataContext = user;
 
-            //if (Role.RoleLevel == 2 || Role.RoleLevel == 3)
-            //{
-            //    addButton.Visibility = Visibility.Collapsed;
-            //}
+            InitButton();
+        }
 
-            //if (Role.RoleLevel != 3)
-            //{
-            //    ButtonPurchases.Visibility = Visibility.Collapsed;
-            //}
+        private void InitButton()
+        {
+            if (user.Role != Role.Admin)
+            {
+                addButton.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            ButtonPurchases.Visibility = Visibility.Collapsed;
+            
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -66,14 +60,7 @@ namespace ScoolLearn
 
         private void ButtonService_Click(object sender, RoutedEventArgs e)
         {
-            if (service == null)
-            {
-                service = new ServiceFrame(connection);
-            }
-
-            FrameText.Text = "Список услуг";
-
-            FrameList.Navigate(service);
+            ShowFrame("Список услуг", new ServiceFrame(connection));
 
             if (user.Role == Role.Admin)
             {
@@ -85,14 +72,7 @@ namespace ScoolLearn
 
         private void ButtonProfil_Click(object sender, RoutedEventArgs e)
         {
-            if (profil == null)
-            {
-                profil = new Profil(1, connection);
-            }
-
-            FrameText.Text = "Профиль";
-
-            FrameList.Navigate(profil);
+            ShowFrame("Профиль", new Profil(1, connection));
 
             addButton.Visibility = Visibility.Collapsed;
             ExitButton.Visibility = Visibility.Visible;
@@ -109,14 +89,7 @@ namespace ScoolLearn
 
         private void ButtonHistory_Click(object sender, RoutedEventArgs e)
         {
-            if (history == null)
-            {
-                history = new History();
-            }
-
-            FrameText.Text = "История действий";
-
-            FrameList.Navigate(history);
+            ShowFrame("История действий", new History());
 
             addButton.Visibility = Visibility.Collapsed;
             ExitButton.Visibility = Visibility.Collapsed;
@@ -124,17 +97,16 @@ namespace ScoolLearn
 
         private void ButtonPurchases_Click(object sender, RoutedEventArgs e)
         {
-            if (purchases == null)
-            {
-                purchases = new Purchases(connection);
-            }
-
-            FrameText.Text = "Купленные курсы";
-
-            FrameList.Navigate(purchases);
+            ShowFrame("Купленные курсы", new Purchases(connection));
 
             addButton.Visibility = Visibility.Collapsed;
             ExitButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowFrame(string Text, Page page)
+        {
+            FrameText.Text = Text;
+            FrameList.Navigate(page);
         }
     }
 }

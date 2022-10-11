@@ -22,9 +22,11 @@ namespace ScoolLearn.Resources.Frames
     /// </summary>
     public partial class ServiceFrame : Page
     {
-        IConnection connection;
+        private IConnection connection;
 
         static readonly ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
+
+        private List<Service> services;
 
         public ServiceFrame(IConnection connection)
         {
@@ -32,24 +34,14 @@ namespace ScoolLearn.Resources.Frames
 
             this.connection = connection;
 
-            //CheckPurchases();
+            RefreshCervice();
 
-            //RefreshCervice();
+            
         }
 
         public void RefreshCervice()
         {
-            throw new Exception();
-        }
-
-        private void CheckPurchases()
-        {
-            throw new Exception();
-        }
-
-        private void SetPurchases(int clientId)
-        {
-            throw new Exception();
+            services = new SQLDatabaseReader(connection).ReadServices();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
