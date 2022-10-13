@@ -15,12 +15,26 @@
         </Grid.Resources>
         
         <ScrollViewer>
-            <ListBox>
-                <ListBox.ItemTemplate>
+            <ListBox Name="ServicesList" ItemsSource="{Binding Service}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        
+                        <Border Width="165" Height="180" BorderBrush="#FF444242" OpacityMask="#FF939393" BorderThickness="1,1,1,1">
+                            <StackPanel>
+                                <Border Height="90">
+                                    <Image Source="{Binding ImagePath}" Height="65" Margin="10,12"/>
+
+                                </Border>
+                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" FontSize="16" Margin="10,0"/>
+                                <TextBlock TextAlignment="Center" Text="{Binding Cost}" FontSize="16" Margin="10,0" />
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
+                </ItemsControl.ItemTemplate>
             </ListBox>
         </ScrollViewer>
     </Grid>

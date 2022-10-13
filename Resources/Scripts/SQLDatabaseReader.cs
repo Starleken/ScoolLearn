@@ -57,9 +57,9 @@ namespace ScoolLearn.Resources.Scripts
                         (
                         reader["Login"].ToString(),
                         reader["Password"].ToString(),
-                        reader["Name"].ToString(),
+                        reader["FirstName"].ToString(),
                         reader["LastName"].ToString(),
-                        Convert.ToInt32(reader["RoleId"])
+                        Convert.ToInt32(reader["IdRole"])
                         );
                 }
 

@@ -36,17 +36,26 @@ namespace ScoolLearn.Resources.Frames
 
             RefreshCervice();
 
-            
+            ServicesList.ItemsSource = services;
         }
 
         public void RefreshCervice()
         {
             services = new SQLDatabaseReader(connection).ReadServices();
         }
-
+       
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            IDeleter deleter = new SQLDatabaseDeleter(connection);
+
+            try
+            {
+                deleter.DeleteObject((Service)ServicesList.SelectedItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)

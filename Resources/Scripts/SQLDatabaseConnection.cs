@@ -31,7 +31,7 @@ namespace ScoolLearn.Resources.Scripts
             }
             catch (Exception)
             {
-                throw new Exception();
+                throw new ConnectionOpenException("Не удалось установить подключение");
             }
         }
     }

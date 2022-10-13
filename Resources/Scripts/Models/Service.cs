@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal class Service
+    internal class Service : IDeletable
     {
         public string Title { get; set; }
         public double Cost { get; set; }

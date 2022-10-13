@@ -10,7 +10,7 @@ namespace ScoolLearn.Resources.Scripts.Factory
     {
         public Service Get(string title, double cost, int duration, double discount, string imagePath)
         {
-            Service service = new Service(title, cost, duration, discount, imagePath);
+            Service service = new Service(title, cost, duration, discount, "\\Resources\\Images\\" + imagePath.Trim());
 
             return service;
         }

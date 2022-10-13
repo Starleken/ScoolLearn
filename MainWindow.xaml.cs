@@ -22,8 +22,6 @@ namespace ScoolLearn
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string connectionString = "Server=DESKTOP-QM5BSJ8\\SQLEXPRESS;Database=lang2;Trusted_Connection=True;";
-
         private string password = "";
         private bool passwordIsHide = true;
 
@@ -35,7 +33,7 @@ namespace ScoolLearn
 
             PasswordTextBox.Visibility = Visibility.Hidden;
 
-            connection = new SQLDatabaseConnection(connectionString);
+            connection = new SQLDatabaseConnection(AppConnection.sqlStringPath);
 
             TryOpenConnection();
         }
@@ -46,9 +44,9 @@ namespace ScoolLearn
             {
                 connection.TryOpenConnection();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось установить подключение");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -96,7 +94,7 @@ namespace ScoolLearn
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
+            } 
         }
 
         private void HidePasswordButton_Click(object sender, RoutedEventArgs e)
