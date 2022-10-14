@@ -75,11 +75,19 @@
       <DependentUpon>ServiceFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Scripts\AppConnection.cs" />
+    <Compile Include="Resources\Scripts\Exceptions\UpdateDataException.cs" />
+    <Compile Include="Resources\Scripts\SQLDatabaseUpdater.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IUpdater.cs" />
+    <Compile Include="Resources\Scripts\TableNames.cs" />
+    <Compile Include="Resources\Scripts\Exceptions\DeleteException.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IDeletable.cs" />
+    <Compile Include="Resources\Scripts\SQLDatabaseDeleter.cs" />
     <Compile Include="Resources\Scripts\Exceptions\ConnectionOpenException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\DataNotFilledException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\UserNotFoundException.cs" />
     <Compile Include="Resources\Scripts\Factory\UserFactory.cs" />
     <Compile Include="Resources\Scripts\Factory\ServiceFactory.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IDeleter.cs" />
     <Compile Include="Resources\Scripts\Models\Role.cs" />
     <Compile Include="Resources\Scripts\SQLDatabaseReader.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IConnection.cs" />

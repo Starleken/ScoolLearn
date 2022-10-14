@@ -18,7 +18,7 @@ namespace ScoolLearn.Resources.Scripts
 
         public void DeleteObject(IDeletable obj)
         {
-            string stringCommand = "DELETE FROM {} WHERE ";
+            string stringCommand = $"DELETE FROM {obj.GetTableName()} WHERE ID={obj.GetId()}";
 
             try
             {

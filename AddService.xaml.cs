@@ -33,16 +33,22 @@ namespace ScoolLearn
 
         private  void addButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            try
+            {
+                CheckFilling();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private bool CheckFilling()
+        private void CheckFilling()
         {
             if (nameTextBox.Text != "" && priceTextBox.Text != "" && timeTextBox.Text != null)
             {
-                return true;
+                throw new DataNotFilledException("Введите данные");
             }
-            return false;
         }
     }
 }

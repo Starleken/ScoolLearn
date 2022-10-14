@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal interface IDeletable
+    internal class UpdateDataException : Exception
     {
-        string GetTableName();
+        public UpdateDataException() { }
 
-        int? GetId();
+        public UpdateDataException(string message) :base(message) { }
     }
 }

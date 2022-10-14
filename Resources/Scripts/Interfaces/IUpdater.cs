@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal interface IDeletable
+    internal interface IUpdater
     {
-        string GetTableName();
-
-        int? GetId();
+        void UpdateService(Service service);
     }
 }

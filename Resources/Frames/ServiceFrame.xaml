@@ -16,6 +16,12 @@
         
         <ScrollViewer>
             <ListBox Name="ServicesList" ItemsSource="{Binding Service}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Click="Update_Click"/>
+                        <MenuItem Header="Удалить"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3"/>

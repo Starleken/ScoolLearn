@@ -28,13 +28,20 @@ namespace ScoolLearn.Resources.Scripts
             {
                 while (reader.Read())
                 {
+                    int? id = null;
+                    if (reader["ID"] != DBNull.Value)
+                    {
+                        id = Convert.ToInt32(reader["Id"]);
+                    }
+
                     Service service = new ServiceFactory().Get
                         (
                         reader["Title"].ToString(),
                         Convert.ToDouble(reader["Cost"]),
                         Convert.ToInt32(reader["DurationInSeconds"]),
                         Convert.ToDouble(reader["Discount"]),
-                        reader["MainImagePath"].ToString()
+                        reader["MainImagePath"].ToString(),
+                        id
                         );
 
                     services.Add(service);

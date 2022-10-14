@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal interface IDeletable
+    internal static class TableNames
     {
-        string GetTableName();
-
-        int? GetId();
+        public static string serviceTableName = "Service";
     }
 }

@@ -22,27 +22,31 @@ namespace ScoolLearn
     /// </summary>
     public partial class ChangeService : Window
     {
-        SqlConnection connection;
+        private IConnection connection;
 
-        int idService = 0;
+        private Service service;
 
-        public ChangeService(int id)
+        public ChangeService(Service service, IConnection connection)
         {
             InitializeComponent();
+;
+            this.connection = connection;
 
-            idService = id;
-
-            FillTextBox();
+            this.service = service;
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            IUpdater updater = new SQLDatabaseUpdater(connection);
+
+            UpdateService();
+
+            updater.UpdateService(service);
         }
 
-        private void FillTextBox()
+        private void UpdateService()
         {
-            throw new Exception();
+            service.Cost = Convert.ToDouble(priceTextBox.Text);
         }
     }
 }

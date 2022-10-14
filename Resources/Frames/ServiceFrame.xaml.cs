@@ -60,7 +60,7 @@ namespace ScoolLearn.Resources.Frames
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeService changeService = new ChangeService(FindIdService(sender));
+            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection);
 
             changeService.Show();
         }
@@ -68,7 +68,7 @@ namespace ScoolLearn.Resources.Frames
         private void CheckClient_Click(object sender, RoutedEventArgs e)
         {
 
-            ListClient listClient = new ListClient(FindIdService(sender), connection);
+            ListClient listClient = new ListClient((Service)ServicesList.SelectedItem, connection);
 
             listClient.Show();
         }
@@ -88,17 +88,10 @@ namespace ScoolLearn.Resources.Frames
             throw new Exception();
         }
 
-        private int FindIdService(object sender)
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
-
-            Grid grid = (Grid)button.Parent;
-
-            TextBlock idBlock = (TextBlock)grid.Children[1];
-
-            int id = Convert.ToInt32(idBlock.Text);
-
-            return id;
+            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection);
+            changeService.ShowDialog();
         }
     }
 }

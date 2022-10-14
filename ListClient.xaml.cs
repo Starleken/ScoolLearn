@@ -21,27 +21,15 @@ namespace ScoolLearn
     /// </summary>
     public partial class ListClient : Window
     {
-        public class Client
-        {
-            public string id { get; set; }
-            public string lastName { get; set; }
-            public string firstName { get; set; }
-            public string patronymic { get; set; }
-            public string EMail { get; set; }
-            public string telephone { get; set; }
-        }
-
         private IConnection connection;
 
-        private int serviceId;
+        private Service service;
 
-        private List<Client> users = new List<Client>();
-
-        public ListClient(int serviceId, IConnection connection)
+        public ListClient(Service service, IConnection connection)
         {
             InitializeComponent();
 
-            this.serviceId = serviceId;
+            this.service = service;
 
             this.connection = connection;
 
