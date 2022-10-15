@@ -26,6 +26,8 @@ namespace ScoolLearn
 
         private User user;
 
+        private History history;
+
         public MainMenu(IConnection connection, User user)
         {
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace ScoolLearn
             NameTextBlock.DataContext = user;
 
             InitButton();
+
+            InitHistory();
         }
 
         private void InitButton()
@@ -51,6 +55,11 @@ namespace ScoolLearn
             
         }
 
+        private void InitHistory()
+        {
+            history = new History();
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddService addService = new AddService(connection);
@@ -60,7 +69,7 @@ namespace ScoolLearn
 
         private void ButtonService_Click(object sender, RoutedEventArgs e)
         {
-            ShowFrame("Список услуг", new ServiceFrame(connection));
+            ShowFrame("Список услуг", new ServiceFrame(connection, history));
 
             if (user.Role == Role.Admin)
             {
@@ -89,7 +98,7 @@ namespace ScoolLearn
 
         private void ButtonHistory_Click(object sender, RoutedEventArgs e)
         {
-            ShowFrame("История действий", new History());
+            ShowFrame("История действий", history);
 
             addButton.Visibility = Visibility.Collapsed;
             ExitButton.Visibility = Visibility.Collapsed;

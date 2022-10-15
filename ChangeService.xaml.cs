@@ -26,13 +26,17 @@ namespace ScoolLearn
 
         private Service service;
 
-        public ChangeService(Service service, IConnection connection)
+        private IHistoryHandler history;
+
+        public ChangeService(Service service, IConnection connection, IHistoryHandler history)
         {
             InitializeComponent();
 ;
             this.connection = connection;
 
             this.service = service;
+
+            this.history = history;
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
@@ -42,6 +46,8 @@ namespace ScoolLearn
             UpdateService();
 
             updater.UpdateService(service);
+
+            history.AddHistory($"Обновление услуги: '{service.Title}''");
         }
 
         private void UpdateService()

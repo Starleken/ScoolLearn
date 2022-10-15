@@ -18,11 +18,12 @@ namespace ScoolLearn.Resources.Scripts
 
         public void DeleteObject(IDeletable obj)
         {
-            string stringCommand = $"DELETE FROM {obj.GetTableName()} WHERE ID={obj.GetId()}";
+            string stringCommand = $"DELETE FROM {obj.GetTableName()} WHERE ID = {obj.GetId()}";
 
             try
             {
-                SqlCommand command = new SqlCommand(stringCommand);
+                SqlCommand command = new SqlCommand(stringCommand, (SqlConnection)connection.GetConnection());
+                command.ExecuteNonQuery();
             }
             catch (Exception)
             {

@@ -19,7 +19,7 @@
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать" Click="Update_Click"/>
-                        <MenuItem Header="Удалить"/>
+                        <MenuItem Header="Удалить" Click="DeleteButton_Click"/>
                     </ContextMenu>
                 </ListBox.ContextMenu>
                 <ItemsControl.ItemsPanel>

@@ -9,7 +9,7 @@ namespace ScoolLearn.Resources.Scripts
 {
     internal class SQLDatabaseUpdater : IUpdater
     {
-        IConnection connection;
+        private IConnection connection;
 
         public SQLDatabaseUpdater(IConnection connection)
         {

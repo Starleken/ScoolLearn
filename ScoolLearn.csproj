@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="Resources\Scripts\AppConnection.cs" />
     <Compile Include="Resources\Scripts\Exceptions\UpdateDataException.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IHistoryHandler.cs" />
+    <Compile Include="Resources\Scripts\Models\HistoryElement.cs" />
     <Compile Include="Resources\Scripts\SQLDatabaseUpdater.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IUpdater.cs" />
     <Compile Include="Resources\Scripts\TableNames.cs" />

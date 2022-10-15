@@ -18,7 +18,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Date}" Width="150">Дата</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Text}" Width="350">Событие</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="350">Событие</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

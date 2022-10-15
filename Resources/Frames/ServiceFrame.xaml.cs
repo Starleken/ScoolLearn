@@ -28,7 +28,9 @@ namespace ScoolLearn.Resources.Frames
 
         private List<Service> services;
 
-        public ServiceFrame(IConnection connection)
+        private IHistoryHandler history;
+
+        public ServiceFrame(IConnection connection, IHistoryHandler history)
         {
             InitializeComponent();
 
@@ -37,6 +39,8 @@ namespace ScoolLearn.Resources.Frames
             RefreshCervice();
 
             ServicesList.ItemsSource = services;
+
+            this.history = history;
         }
 
         public void RefreshCervice()
@@ -60,7 +64,7 @@ namespace ScoolLearn.Resources.Frames
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection);
+            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection, history);
 
             changeService.Show();
         }
@@ -90,7 +94,7 @@ namespace ScoolLearn.Resources.Frames
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection);
+            ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection, history);
             changeService.ShowDialog();
         }
     }
