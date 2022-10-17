@@ -24,51 +24,46 @@ namespace ScoolLearn.Resources.Frames
     public partial class Profil : Page
     {
 
-        static private Profil instance;
-
         private IConnection connection;
 
-        private int idUser;
+        private User user;
 
-        public Profil(int idUser, IConnection connection)
+        public Profil(User user, IConnection connection)
         {
             InitializeComponent();
 
             this.connection = connection;
 
-            this.idUser = idUser;
-
-            instance = this;
+            this.user = user;
 
             RefreshInfo();
         }
 
-        static public Profil GetInstance()
-        {
-            return instance;
-        }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeLogin changeLogin = new ChangeLogin(idUser, connection);
+            ChangeLogin changeLogin = new ChangeLogin(user, connection);
             changeLogin.Show();
         }
 
         private void PasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangePassword changePassword = new ChangePassword(idUser, connection);
+            ChangePassword changePassword = new ChangePassword(user, connection);
             changePassword.Show();
         }
 
         private void MailButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeMail changeMail = new ChangeMail(idUser, connection);
+            ChangeMail changeMail = new ChangeMail(user, connection);
             changeMail.Show();
         }
 
         public void RefreshInfo()
         {
-            throw new Exception();
+            FullNameTextBlock.Text = $"{user.Name} {user.LastName}";
+            FirstNameTextBlock.Text = $"{user.Name}";
+            LastNameTextBlock.Text = $"{user.LastName}";
+            LoginNameTextBlock.Text = $"{user.Login}";
+            PasswordTextBlock.Text = new string('*', user.Password.Length);
         }
     }
 }

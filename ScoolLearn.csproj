@@ -75,6 +75,10 @@
       <DependentUpon>ServiceFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Scripts\AppConnection.cs" />
+    <Compile Include="Resources\Scripts\Exceptions\AddException.cs" />
+    <Compile Include="Resources\Scripts\Interfaces\IAdder.cs" />
+    <Compile Include="Resources\Scripts\SQLDatabaseAdder.cs" />
+    <Compile Include="Resources\Scripts\Exceptions\IncorrectDataException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\UpdateDataException.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IHistoryHandler.cs" />
     <Compile Include="Resources\Scripts\Models\HistoryElement.cs" />

@@ -62,7 +62,7 @@ namespace ScoolLearn
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddService addService = new AddService(connection);
+            AddService addService = new AddService(connection, history);
 
             addService.Show();
         }
@@ -81,7 +81,7 @@ namespace ScoolLearn
 
         private void ButtonProfil_Click(object sender, RoutedEventArgs e)
         {
-            ShowFrame("Профиль", new Profil(1, connection));
+            ShowFrame("Профиль", new Profil(user, connection));
 
             addButton.Visibility = Visibility.Collapsed;
             ExitButton.Visibility = Visibility.Visible;

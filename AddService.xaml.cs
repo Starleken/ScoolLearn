@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using ScoolLearn.Resources.Scripts;
 using ScoolLearn.Resources.Frames;
+using ScoolLearn.Resources.Scripts.Factory;
 
 namespace ScoolLearn
 {
@@ -23,12 +24,14 @@ namespace ScoolLearn
     public partial class AddService : Window
     {
         private IConnection connection;
+        private IHistoryHandler history;
 
-        public AddService(IConnection connection)
+        public AddService(IConnection connection, IHistoryHandler history)
         {
             InitializeComponent();
 
             this.connection = connection;
+            this.history = history;
         }
 
         private  void addButton_Click(object sender, RoutedEventArgs e)
@@ -36,16 +39,26 @@ namespace ScoolLearn
             try
             {
                 CheckFilling();
+
+                Service service = new ServiceFactory().Get(nameTextBox.Text, Convert.ToDouble(priceTextBox.Text), Convert.ToInt32(timeTextBox.Text), Convert.ToDouble(discountTextBox.Text), imageTextBox.Text, null);
+
+                IAdder adder = new SQLDatabaseAdder(connection);
+                adder.AddService(service);
+
+                history.AddHistory($"Добавление услуги: {service.Title}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            this.Close();
         }
 
         private void CheckFilling()
         {
-            if (nameTextBox.Text != "" && priceTextBox.Text != "" && timeTextBox.Text != null)
+            if (nameTextBox.Text == "" || priceTextBox.Text == "" || timeTextBox.Text == "" || discountTextBox.Text == "" || imageTextBox.Text == "")
             {
                 throw new DataNotFilledException("Введите данные");
             }

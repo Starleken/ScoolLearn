@@ -24,13 +24,13 @@ namespace ScoolLearn.Resources.WindowForProfil
     {
         IConnection connection;
 
-        int idUser;
+        User user;
 
-        public ChangeLogin(int idUser, IConnection connection)
+        public ChangeLogin(User user, IConnection connection)
         {
             InitializeComponent();
 
-            this.idUser = idUser;
+            this.user = user;
 
             this.connection = connection;
         }

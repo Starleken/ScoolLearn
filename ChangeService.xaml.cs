@@ -37,22 +37,65 @@ namespace ScoolLearn
             this.service = service;
 
             this.history = history;
+
+            FillTextBox();
+        }
+
+        private void FillTextBox()
+        {
+            nameTextBox.Text = service.Title;
+            priceTextBox.Text = service.Cost.ToString().Replace('.',',');
+            discountTextBox.Text = service.Discount.ToString().Replace('.',',');
+            timeTextBox.Text = service.DurationInSeconds.ToString();
+            imageTextBox.Text = service.ImagePath.ToString();
+        }
+
+        private void CheckFillingTextBox()
+        {
+            if (nameTextBox.Text == "" || priceTextBox.Text == "" ||
+                discountTextBox.Text == "" || timeTextBox.Text == "" || imageTextBox.Text == "")
+            {
+                throw new DataNotFilledException("Введите данные");
+            }
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            IUpdater updater = new SQLDatabaseUpdater(connection);
+            try
+            {
+                CheckFillingTextBox();
 
-            UpdateService();
+                IUpdater updater = new SQLDatabaseUpdater(connection);
 
-            updater.UpdateService(service);
+                UpdateDataInService();
 
-            history.AddHistory($"Обновление услуги: '{service.Title}''");
+                updater.UpdateService(service);
+
+                history.AddHistory($"Обновление услуги: '{service.Title}''");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            this.Close();
         }
 
-        private void UpdateService()
+        private void UpdateDataInService()
         {
-            service.Cost = Convert.ToDouble(priceTextBox.Text);
+            try
+            {
+                service.Title = nameTextBox.Text;
+                service.Cost = Convert.ToDouble(priceTextBox.Text);
+                service.Discount = Convert.ToDouble(discountTextBox.Text);
+                service.DurationInSeconds = Convert.ToInt32(timeTextBox.Text);
+                service.ImagePath = imageTextBox.Text;
+            }
+            catch (Exception)
+            {
+                throw new IncorrectDataException("Некорректные данные");
+            }
         }
     }
 }
