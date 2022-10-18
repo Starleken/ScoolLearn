@@ -71,7 +71,7 @@ namespace ScoolLearn
 
                 updater.UpdateService(service);
 
-                history.AddHistory($"Обновление услуги: '{service.Title}''");
+                history.AddHistory($"Обновление услуги: '{service.Title}'");
             }
             catch (Exception ex)
             {

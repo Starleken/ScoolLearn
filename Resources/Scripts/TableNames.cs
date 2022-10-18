@@ -9,5 +9,7 @@ namespace ScoolLearn.Resources.Scripts
     internal static class TableNames
     {
         public static string serviceTableName = "Service";
+
+        public static string userTableName = "User";
     }
 }

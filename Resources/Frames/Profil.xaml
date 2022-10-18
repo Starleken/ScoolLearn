@@ -51,22 +51,22 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Margin="10,0,0,0" Text="Фамилия:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="LastNameTextBlock" Text="Журавлевич" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="LastNameTextBlock" Text="LastName" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Row="1" Margin="10,0,0,0" Text="Имя:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="FirstNameTextBlock" Text="Максим" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="FirstNameTextBlock" Text="Name" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Row="2" Margin="10,0,0,0" Text="Отчество:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="MiddleNameTextBlock" Text="Евгеньевич" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="MiddleNameTextBlock" Text="Patronymic" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Row="3" Margin="10,0,0,0" Text="Логин:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="LoginNameTextBlock" Text="Admin" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="LoginNameTextBlock" Text="Login" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Row="4" Margin="10,0,0,0" Text="Пароль:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="PasswordTextBlock" Text="*****" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="PasswordTextBlock" Text="password" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Row="5" Margin="10,0,0,0" Text="Почта:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="MailTextBlock" Text="starleken@mail.ru" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
+            <TextBlock x:Name="MailTextBlock" Text="email" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Margin="5,0,0,0"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="1">

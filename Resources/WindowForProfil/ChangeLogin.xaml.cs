@@ -22,9 +22,9 @@ namespace ScoolLearn.Resources.WindowForProfil
     /// </summary>
     public partial class ChangeLogin : Window
     {
-        IConnection connection;
+        private IConnection connection;
 
-        User user;
+        private User user;
 
         public ChangeLogin(User user, IConnection connection)
         {
@@ -37,33 +37,32 @@ namespace ScoolLearn.Resources.WindowForProfil
         
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!CheckFilling())
+            try
             {
-                MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                CheckFilling();
 
-                return;
+                IReader reader = new SQLDatabaseReader(connection);
+                reader.CheckUniquenessUser(LoginTextBox.Text);
+
+                user.Login = LoginTextBox.Text;
+
+                IUpdater updater = new SQLDatabaseUpdater(connection);
+                updater.UpdateUser(user);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            if (!CheckIdentifity())
-            {
-                return;
-            }
-
-            throw new Exception();
+            this.Close();
         }
 
-        private bool CheckIdentifity()
+        private void CheckFilling()
         {
-            throw new Exception();
-        }
-
-        private bool CheckFilling()
-        {
-            if (LoginTextBox.Text != "")
+            if (LoginTextBox.Text == "")
             {
-                return true;
+                throw new DataNotFilledException("Заполните данные");
             }
-            else return false;
         }
     }
 }

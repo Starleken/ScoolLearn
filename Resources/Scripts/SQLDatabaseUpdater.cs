@@ -18,14 +18,34 @@ namespace ScoolLearn.Resources.Scripts
 
         public void UpdateService(Service service)
         {
-            SqlConnection conn = (SqlConnection)connection.GetConnection();
-
             string stringCommand = $"UPDATE {service.GetTableName()} SET Title = '{service.Title}', Cost = {service.Cost}," +
                 $" DurationInSeconds = {service.DurationInSeconds}, Discount = {service.Discount.ToString().Replace(',','.')}, MainImagePath = '{service.ImagePath}' WHERE ID = {service.GetId()}";
 
-            SqlCommand command = new SqlCommand(stringCommand, conn);
+            MakeQueue(stringCommand);
+        }
 
-            command.ExecuteNonQuery();
+        public void UpdateUser(User user)
+        {
+            string stringCommand = $"UPDATE [{TableNames.userTableName}] SET Login = '{user.Login}', Password = '{user.Password}'," +
+                $" FirstName = '{user.Name}', LastName = '{user.LastName}', Patronymic = '{user.Patronymic}', Email = '{user.Email}' WHERE Id = {user.Id}";
+
+            MakeQueue(stringCommand);
+        }
+
+        private void MakeQueue(string cmdText)
+        {
+            try
+            {
+                SqlConnection conn = (SqlConnection)connection.GetConnection();
+
+                SqlCommand command = new SqlCommand(cmdText, conn);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw new UpdateException("Не удалось обновить информацию");
+            }
         }
     }
 }

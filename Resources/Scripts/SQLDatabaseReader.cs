@@ -52,6 +52,17 @@ namespace ScoolLearn.Resources.Scripts
             return services;
         }
 
+        public void CheckUniquenessUser(string login)
+        {
+            string cmdText = $"SELECT * FROM [User] WHERE [Login]='{login}'";
+
+            using (SqlDataReader reader = MakeQueue(cmdText))
+            {
+                if (reader.HasRows)
+                    throw new LoginNotUniqueException("Логин уже занят");
+            }
+        }
+
         public User FindUser(string login, string password)
         {
             User user = null;
@@ -66,7 +77,10 @@ namespace ScoolLearn.Resources.Scripts
                         reader["Password"].ToString(),
                         reader["FirstName"].ToString(),
                         reader["LastName"].ToString(),
-                        Convert.ToInt32(reader["IdRole"])
+                        reader["Patronymic"].ToString(),
+                        reader["Email"].ToString(),
+                        Convert.ToInt32(reader["IdRole"]),
+                        Convert.ToInt32(reader["Id"])
                         );
                 }
 

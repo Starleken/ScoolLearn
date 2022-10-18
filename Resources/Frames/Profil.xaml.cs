@@ -59,11 +59,13 @@ namespace ScoolLearn.Resources.Frames
 
         public void RefreshInfo()
         {
-            FullNameTextBlock.Text = $"{user.Name} {user.LastName}";
+            FullNameTextBlock.Text = $"{user.Name} {user.LastName} {user.Patronymic}";
             FirstNameTextBlock.Text = $"{user.Name}";
             LastNameTextBlock.Text = $"{user.LastName}";
             LoginNameTextBlock.Text = $"{user.Login}";
             PasswordTextBlock.Text = new string('*', user.Password.Length);
+            MiddleNameTextBlock.Text = $"{user.Patronymic}";
+            MailTextBlock.Text = $"{user.Email}";
         }
     }
 }

@@ -22,9 +22,9 @@ namespace ScoolLearn.Resources.WindowForProfil
     /// </summary>
     public partial class ChangeMail : Window
     {
-        IConnection connection;
+        private IConnection connection;
 
-        User user;
+        private User user;
 
         public ChangeMail(User user, IConnection connection)
         {
@@ -37,16 +37,29 @@ namespace ScoolLearn.Resources.WindowForProfil
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new Exception();
+            try
+            {
+                CheckFilling();
+
+                user.Email = MailTextBox.Text;
+
+                IUpdater updater = new SQLDatabaseUpdater(connection);
+                updater.UpdateUser(user);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            this.Close();
         }
 
-        private bool CheckFilling()
+        private void CheckFilling()
         {
-            if (MailTextBox.Text != "")
+            if (MailTextBox.Text == "")
             {
-                return true;
+                throw new DataNotFilledException("Введите Данные");
             }
-            else return false;
         }
     }
 }

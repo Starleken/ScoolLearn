@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal class UpdateDataException : Exception
+    internal class UpdateException : Exception
     {
-        public UpdateDataException() { }
+        public UpdateException() { }
 
-        public UpdateDataException(string message) :base(message) { }
+        public UpdateException(string message) :base(message) { }
     }
 }

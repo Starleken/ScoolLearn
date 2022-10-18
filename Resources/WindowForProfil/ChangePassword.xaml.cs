@@ -23,9 +23,9 @@ namespace ScoolLearn.Resources.WindowForProfil
     /// </summary>
     public partial class ChangePassword : Window
     {
-        IConnection connection;
+        private IConnection connection;
 
-        User user;
+        private User user;
 
         public ChangePassword(User user, IConnection connection)
         {
@@ -38,23 +38,29 @@ namespace ScoolLearn.Resources.WindowForProfil
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!CheckFilling())
+            try
             {
-                MessageBox.Show("Заполните данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                CheckFilling();
 
-                return;
+                user.Password = PasswordTextBox.Text;
+
+                IUpdater updater = new SQLDatabaseUpdater(connection);
+                updater.UpdateUser(user);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            throw new Exception();
+            this.Close();
         }
 
-        private bool CheckFilling()
+        private void CheckFilling()
         {
-            if (PasswordTextBox.Text != "")
+            if (PasswordTextBox.Text == "")
             {
-                return true;
+                throw new DataNotFilledException("Введите данные");
             }
-            else return false;
         }
     }
 }

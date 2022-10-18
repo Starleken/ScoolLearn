@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    internal interface IReader
+    internal class LoginNotUniqueException : Exception
     {
-        void CheckUniquenessUser(string login);
+        public LoginNotUniqueException() { }
 
-        User FindUser(string login, string password);
-
-        List<Service> ReadServices();
+        public LoginNotUniqueException(string message) : base(message) { }
     }
 }

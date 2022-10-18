@@ -9,5 +9,7 @@ namespace ScoolLearn.Resources.Scripts
     internal interface IUpdater
     {
         void UpdateService(Service service);
+
+        void UpdateUser(User user);
     }
 }
