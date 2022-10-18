@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScoolLearn.Resources.Scripts
 {
-    public class User
+    public class User : Client
     {
-        public int? Id { get; private set; }
-
         public string Login { get; set; }
 
         public string Password { get; set; }
-
-        public string Name { get; private set; }
-
-        public string LastName { get; private set; }
-
-        public string Patronymic { get; private set; }
 
         public string Email { get; set; }
 
@@ -26,16 +18,12 @@ namespace ScoolLearn.Resources.Scripts
 
         public User() { }
 
-        public User(string login, string password, string name, string lastName, string patronymic, string email, int roleId, int? id)
+        public User(string login, string password, string name, string lastName, string patronymic, string email, int roleId, int? id) : base(id,name,lastName,patronymic)
         {
             Login = login;
             Password = password;
-            Name = name;
-            LastName = lastName;
             Role = (Role)roleId;
-            Patronymic = patronymic;
             Email = email;
-            Id = id;
         }
     }
 }

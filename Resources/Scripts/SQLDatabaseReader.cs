@@ -88,6 +88,31 @@ namespace ScoolLearn.Resources.Scripts
             }
         }
 
+        public List<Client> GetClientsByService(Service service)
+        {
+            string cmdText = $"SELECT * FROM Client c INNER JOIN ClientService cs ON c.ID = cs.ClientID WHERE cs.ServiceID = {service.GetId()}";
+
+            List<Client> clients = new List<Client>();
+
+            using (SqlDataReader reader = MakeQueue(cmdText))
+            {
+                while (reader.Read())
+                {
+                    Client client = new ClientFactory().Get
+                        (
+                            reader["FirstName"].ToString(),
+                            reader["LastName"].ToString(),
+                            reader["Patronymic"].ToString(),
+                            Convert.ToInt32(reader["ID"])
+                        );
+
+                    clients.Add(client);
+                }
+            }
+
+            return clients;
+        }
+
         private SqlDataReader MakeQueue(string cmdText)
         {
             sqlConn = (SqlConnection)connection.GetConnection();

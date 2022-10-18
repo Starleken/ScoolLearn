@@ -19,7 +19,7 @@ namespace ScoolLearn.Resources.Scripts
         public void UpdateService(Service service)
         {
             string stringCommand = $"UPDATE {service.GetTableName()} SET Title = '{service.Title}', Cost = {service.Cost}," +
-                $" DurationInSeconds = {service.DurationInSeconds}, Discount = {service.Discount.ToString().Replace(',','.')}, MainImagePath = '{service.ImagePath}' WHERE ID = {service.GetId()}";
+                $" DurationInSeconds = {service.DurationInSeconds}, Discount = {service.Discount.ToString().Replace(',','.')}, MainImagePath = '{service.ImagePath.Replace(@"\Resources\Images\","")}' WHERE ID = {service.GetId()}";
 
             MakeQueue(stringCommand);
         }

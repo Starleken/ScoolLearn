@@ -36,6 +36,7 @@ namespace ScoolLearn
             connection = new SQLDatabaseConnection(AppConnection.sqlStringPath);
 
             TryOpenConnection();
+
         }
 
         private void TryOpenConnection()

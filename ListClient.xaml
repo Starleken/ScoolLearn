@@ -19,17 +19,12 @@
 
         <TextBlock x:Name="ServiceNameTextBlock" Text="Репетитор по иностранному языку для детей" VerticalAlignment="Center" FontSize="20" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0"/>
 
-        <Button x:Name="DeleteUserButton" Grid.Row="0" Grid.Column="1" Margin="20" Content="Удалить пользователя" FontSize="15" Click="DeleteUserButton_Click"/>
-
         <ListView x:Name="ClientDataGrid" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,10,5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=id}" Width="100">id клиента</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=firstName}" Width="100">Фамилия</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=lastName}" Width="100">Имя</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=patronymic}" Width="100">Отчество</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=EMail}" Width="100">Email</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=telephone}" Width="100">Телефон</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Фамилия</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Patronymic}" Width="100">Отчество</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

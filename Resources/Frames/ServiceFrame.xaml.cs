@@ -24,8 +24,6 @@ namespace ScoolLearn.Resources.Frames
     {
         private IConnection connection;
 
-        static readonly ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
-
         private List<Service> services;
 
         private IHistoryHandler history;
@@ -69,33 +67,17 @@ namespace ScoolLearn.Resources.Frames
             changeService.Show();
         }
 
-        private void CheckClient_Click(object sender, RoutedEventArgs e)
-        {
-
-            ListClient listClient = new ListClient((Service)ServicesList.SelectedItem, connection);
-
-            listClient.Show();
-        }
-
-        private void Buy_Click(object sender, RoutedEventArgs e)
-        {
-            throw new Exception();
-        }
-
-        private void AddClient()
-        {
-            throw new Exception();
-        }
-
-        private int CheckIdentifityByName(string lastName, string firstName, string middleName)
-        {
-            throw new Exception();
-        }
-
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             ChangeService changeService = new ChangeService((Service)ServicesList.SelectedItem, connection, history);
             changeService.ShowDialog();
+        }
+
+        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ListClient listClient = new ListClient((Service)ServicesList.SelectedItem, connection);
+
+            listClient.ShowDialog();
         }
     }
 }

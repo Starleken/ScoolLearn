@@ -13,5 +13,7 @@ namespace ScoolLearn.Resources.Scripts
         User FindUser(string login, string password);
 
         List<Service> ReadServices();
+
+        List<Client> GetClientsByService(Service service);
     }
 }

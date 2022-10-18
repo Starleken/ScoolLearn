@@ -25,6 +25,8 @@ namespace ScoolLearn
 
         private Service service;
 
+        private List<Client> humans = new List<Client>();
+
         public ListClient(Service service, IConnection connection)
         {
             InitializeComponent();
@@ -33,19 +35,18 @@ namespace ScoolLearn
 
             this.connection = connection;
 
-            SetNameService();
-
             RefreshClient();
         }
 
         private void RefreshClient()
         {
-            throw new Exception();
-        }
+            IReader reader = new SQLDatabaseReader(connection);
+            humans = reader.GetClientsByService(service);
 
-        private void SetNameService()
-        {
-            throw new Exception();
+            foreach (Client client in humans)
+            {
+                ClientDataGrid.Items.Add(client);
+            }
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e)
