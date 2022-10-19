@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScoolLearn"
         mc:Ignorable="d"
         Title="Scool Learn" Height="500" Width="450" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#1d2238">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
@@ -22,16 +22,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Логин" Margin="30,0,30,40" FontSize="36"/>
-            <TextBox x:Name="LoginTextBox" Grid.Row="0" Margin="30,55,30,0" FontSize="24"/>
-            
-            <TextBlock Grid.Row="1" Text="Пароль" Margin="30,0,30,40" FontSize="36"/>
-            <TextBox x:Name="PasswordTextBox" Grid.Row="1" Margin="30,55,30,0" FontSize="24"/>
-            <PasswordBox x:Name="HidePasswordBox" Grid.Row="1" Margin="30,55,30,0" FontSize="24"/>
+            <TextBlock Text="Логин" Margin="30,0,30,40" FontSize="36" Foreground="#CCFFFFFF"/>
+            <TextBox x:Name="LoginTextBox" Grid.Row="0" Margin="30,55,30,0" FontSize="24" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-            <Button x:Name="EnterButton" Grid.Row="2" Content="Войти" Margin="40,40,40,10" FontSize="24" Click="EnterButton_Click"/>
-            <Button x:Name="HidePasswordButton" Grid.Row="3" Margin="30" Content="Скрыть" Click="HidePasswordButton_Click"/>
-            <Button x:Name="RegistrationButton" Grid.Row="3" Margin="30" Content="Регистрация" Click="RegistrationButton_Click"/>
+            <TextBlock Grid.Row="1" Text="Пароль" Margin="30,0,30,40" FontSize="36" Foreground="#CCFFFFFF"/>
+            <TextBox x:Name="PasswordTextBox" Grid.Row="1" Margin="30,55,30,0" FontSize="24" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
+            <PasswordBox x:Name="HidePasswordBox" Grid.Row="1" Margin="30,55,30,0" FontSize="24" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
+
+            <Button x:Name="EnterButton" Grid.Row="2" Content="Войти" Margin="40,40,40,10" FontSize="24" Click="EnterButton_Click" Foreground="#CCFFFFFF" Background="#00DDDDDD" BorderBrush="#00707070"/>
+            <Button x:Name="HidePasswordButton" Grid.Row="3" Margin="30" Content="Скрыть" Click="HidePasswordButton_Click" Background="#00DDDDDD" BorderBrush="#00707070"/>
+            <Button x:Name="RegistrationButton" Grid.Row="3" Margin="30" Content="Регистрация" Click="RegistrationButton_Click" Foreground="#CCFFFFFF" Background="#00DDDDDD" BorderBrush="#00707070"/>
         </Grid>
     </Grid>
 </Window>

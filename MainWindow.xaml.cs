@@ -126,5 +126,10 @@ namespace ScoolLearn
             window.Show();
             this.Close();
         }
+
+        private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

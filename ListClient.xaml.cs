@@ -36,6 +36,8 @@ namespace ScoolLearn
             this.connection = connection;
 
             RefreshClient();
+
+            ServiceNameTextBlock.Text = service.Title;
         }
 
         private void RefreshClient()

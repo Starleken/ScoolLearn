@@ -8,13 +8,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
-    
-    <Grid Background="White">
+
+    <Grid Background="#1d2238">
         <Grid.Resources>
             <s:Service x:Key="Data"/>
         </Grid.Resources>
-        
-        <ListView Name="ServicesList" ItemsSource="{Binding Service}">
+        <ListView Name="ServicesList" ItemsSource="{Binding Service}" Background="#171c2f" BorderBrush="#00ABADB3">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Редактировать" Click="Update_Click"/>
@@ -28,14 +27,13 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="165" Height="180" BorderBrush="#FF444242" OpacityMask="#FF939393" BorderThickness="1,1,1,1" HorizontalAlignment="Center">
-                        <StackPanel MouseLeftButtonUp="StackPanel_MouseLeftButtonUp">
+                    <Border Width="185" Height="200" BorderBrush="#FF444242" OpacityMask="#FF939393" BorderThickness="1,1,1,1" HorizontalAlignment="Center">
+                        <StackPanel MouseLeftButtonUp="StackPanel_MouseLeftButtonUp" Background="#1d2238">
                             <Border Height="90">
                                 <Image Source="{Binding ImagePath}" Height="65" Margin="10,12"/>
-
                             </Border>
-                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" FontSize="16" Margin="10,0"/>
-                            <TextBlock TextAlignment="Center" Text="{Binding Cost}" FontSize="16" Margin="10,0" />
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" FontSize="14" Margin="10,0" Foreground="#99FFFFFF" />
+                            <TextBlock TextAlignment="Center" Text="{Binding Cost}" FontSize="16" Margin="10,0" Foreground="#99FFFFFF"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

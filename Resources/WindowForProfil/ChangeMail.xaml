@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:ScoolLearn.Resources.WindowForProfil"
         mc:Ignorable="d"
         Title="Изменение почты" Height="250" Width="500" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#1d2238">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Введите новую почту:" FontSize="30" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="MailTextBox" Grid.Row="1" Margin="10,10,10,10" FontSize="30" VerticalAlignment="Center"/>
-        <Button x:Name="SaveButton" Grid.Row="3" Margin="150,10" Content="Сохранить" FontSize="30" Click="SaveButton_Click"/>
+        <TextBlock Grid.Row="0" Text="Введите новую почту:" FontSize="30" VerticalAlignment="Bottom" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="MailTextBox" Grid.Row="1" Margin="10,10,10,10" FontSize="30" VerticalAlignment="Center" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
+        <Button x:Name="SaveButton" Grid.Row="3" Margin="150,10" Content="Сохранить" FontSize="30" Click="SaveButton_Click" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#CCFFFFFF"/>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScoolLearn"
         mc:Ignorable="d"
         Title="Изменение услуги" Height="350" Width="450" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#1d2238">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -23,23 +23,23 @@
             <ColumnDefinition Width="102*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="4" Margin="10,0,0,0" Text="Информация об услуге" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="24"/>
+        <TextBlock Grid.ColumnSpan="4" Margin="10,0,0,0" Text="Информация об услуге" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="24" Foreground="#CCFFFFFF"/>
 
-        <TextBlock Grid.Row="1" Text="Название услуги" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Margin="6,0,0,0"/>
-        <TextBox x:Name="nameTextBox" Grid.Row="1" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="1" Text="Название услуги" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Margin="6,0,0,0" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="nameTextBox" Grid.Row="1" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-        <TextBlock Grid.Row="2" Text="Цена всего курса(р)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="17,0,0,0"/>
-        <TextBox x:Name="priceTextBox" Grid.Row="2" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="2" Text="Цена всего курса(р)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="17,0,0,0" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="priceTextBox" Grid.Row="2" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-        <TextBlock Grid.Row="3" Text="Ссылка на картинку" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0"/>
-        <TextBox x:Name="imageTextBox" Grid.Row="3" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="3" Text="Ссылка на картинку" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="imageTextBox" Grid.Row="3" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-        <TextBlock Grid.Row="4" Text="Время курса(мин)" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0"/>
-        <TextBox x:Name="timeTextBox" Grid.Row="4" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="4" Text="Время курса(мин)" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="timeTextBox" Grid.Row="4" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-        <TextBlock Grid.Row="5" Text="Размер скидки" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0"/>
-        <TextBox x:Name="discountTextBox" Grid.Row="5" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="5" Text="Размер скидки" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="18,0,0,0" Foreground="#99FFFFFF"/>
+        <TextBox x:Name="discountTextBox" Grid.Row="5" Grid.Column="2" Margin="5,5,20,5" FontSize="18" Grid.ColumnSpan="2" Background="#FF171B2D" BorderBrush="#00000000" Foreground="#99FFFFFF"/>
 
-        <Button x:Name="ApplyButton" Content="Изменить" Grid.Row="6" Grid.ColumnSpan="4" Margin="40,20" FontSize="20" Grid.Column="0" Click="ApplyButton_Click"/>
+        <Button x:Name="ApplyButton" Content="Изменить" Grid.Row="6" Grid.ColumnSpan="4" Margin="40,20" FontSize="20" Grid.Column="0" Click="ApplyButton_Click" Foreground="#CCFFFFFF" BorderBrush="#00707070" Background="#00DDDDDD"/>
     </Grid>
 </Window>

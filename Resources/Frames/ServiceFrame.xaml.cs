@@ -24,7 +24,8 @@ namespace ScoolLearn.Resources.Frames
     {
         private IConnection connection;
 
-        private List<Service> services;
+        private List<Service> allServices;
+        private IEnumerable<Service> ServicesForView;
 
         private IHistoryHandler history;
 
@@ -36,14 +37,18 @@ namespace ScoolLearn.Resources.Frames
 
             RefreshCervice();
 
-            ServicesList.ItemsSource = services;
+            ServicesForView = allServices;
+            ServicesList.ItemsSource = ServicesForView;
+            ServicesForView = allServices.Where(x => x.Title.Contains("английского"));
+            ServicesList.ItemsSource = ServicesForView;
+
 
             this.history = history;
         }
 
         public void RefreshCervice()
         {
-            services = new SQLDatabaseReader(connection).ReadServices();
+            allServices = new SQLDatabaseReader(connection).ReadServices();
         }
        
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

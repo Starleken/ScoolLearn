@@ -50,8 +50,6 @@ namespace ScoolLearn
                 addButton.Visibility = Visibility.Collapsed;
                 return;
             }
-
-            ButtonPurchases.Visibility = Visibility.Collapsed;
             
         }
 
@@ -114,7 +112,6 @@ namespace ScoolLearn
 
         private void ShowFrame(string Text, Page page)
         {
-            FrameText.Text = Text;
             FrameList.Navigate(page);
         }
     }
