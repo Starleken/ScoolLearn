@@ -27,6 +27,7 @@ namespace ScoolLearn
         private User user;
 
         private History history;
+        private ServiceFrame serviceFrame;
 
         public MainMenu(IConnection connection, User user)
         {
@@ -67,7 +68,8 @@ namespace ScoolLearn
 
         private void ButtonService_Click(object sender, RoutedEventArgs e)
         {
-            ShowFrame("Список услуг", new ServiceFrame(connection, history));
+            serviceFrame = new ServiceFrame(connection, history);
+            ShowFrame("Список услуг", serviceFrame);
 
             if (user.Role == Role.Admin)
             {
@@ -113,6 +115,11 @@ namespace ScoolLearn
         private void ShowFrame(string Text, Page page)
         {
             FrameList.Navigate(page);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            serviceFrame.FilteringService(FilterTextBox.Text);
         }
     }
 }

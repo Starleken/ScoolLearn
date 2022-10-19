@@ -27,6 +27,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.ColumnSpan="2" Background="#171d2d"/>
+
+            <TextBox Name="FilterTextBox" Margin="15" Background="#FF141827" BorderBrush="#00000000" Foreground="#99FFFFFF" FontSize="25" VerticalAlignment="Center" TextChanged="TextBox_TextChanged"/>
             <Button x:Name="addButton" Grid.Column="1" Margin="15" Content="Добавить услугу" FontSize="25" Click="AddButton_Click" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#CCFFFFFF"/>
             <Button x:Name="ExitButton" Grid.Column="1" Margin="40,20,40,10" Content="Выйти из аккаунта" FontSize="18" Click="ExitButton_Click" Visibility="Collapsed" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#CCFFFFFF"/>
 

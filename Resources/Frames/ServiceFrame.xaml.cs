@@ -39,16 +39,19 @@ namespace ScoolLearn.Resources.Frames
 
             ServicesForView = allServices;
             ServicesList.ItemsSource = ServicesForView;
-            ServicesForView = allServices.Where(x => x.Title.Contains("английского"));
-            ServicesList.ItemsSource = ServicesForView;
-
 
             this.history = history;
         }
 
-        public void RefreshCervice()
+        private void RefreshCervice()
         {
             allServices = new SQLDatabaseReader(connection).ReadServices();
+        }
+
+        public void FilteringService(string text)
+        {
+            ServicesForView = allServices.Where(x => x.Title.Contains(text));
+            ServicesList.ItemsSource = ServicesForView;
         }
        
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
